@@ -25,7 +25,7 @@
       SELECT m.no, m.id, m.pw, m.name, m.regdate, m.upddate, a.auth
       FROM mybatisMember m INNER JOIN mybatismemberAuth a ON
       m.no = a.no
-      WHERE mem.no = #{no}
+      WHERE m.no = #{no}
    </select>
 
    <select id="list" resultType="Member">
@@ -34,7 +34,7 @@
 
    <update id="update">
       UPDATE mybatisMember
-      SET name =#{name}
+      SET name =#{name}, pw = #{pw}
       WHERE no = #{no}
    </update>
 

@@ -32,23 +32,35 @@ public class MemberServiceimpl implements MemberService {
 	@Override
 	@Transactional
 	public List<Member> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.list();
 	}
 
 	@Override
 	
 	public Member read(Member memebr) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return mapper.read(memebr);
 	}
 
 	@Override
-	@Transactional
-	public int update(Member member) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	   @Transactional
+	   public int update(Member member) throws Exception {
+	      int count = mapper.update(member);
+	      if(count > 0) {
+	         mapper.deleteAuth(member);
+	         List<MemberAuth> authList = member.getAuthList();
+	         for(int i = 0; i < authList.size() ; i++) {
+	            MemberAuth memberAuth = authList.get(i);
+	            String auth = memberAuth.getAuth();
+	            if(auth == null || auth.trim().length() == 0) {
+	               continue;
+	            }
+	            memberAuth.setNo(member.getNo());
+	            mapper.createAuth(memberAuth);
+	         }
+	      }
+	      return 0;
+	   }
 
 	@Override
 	@Transactional
