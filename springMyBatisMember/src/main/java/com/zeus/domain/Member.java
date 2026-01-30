@@ -13,7 +13,7 @@ public class Member {
 	private String pw; 
 	private String name; 
 	private Date regDate; 
-	private Date updDate; 
+	private Date modDate; 
 	 
 	private List<MemberAuth> authList; 
 	

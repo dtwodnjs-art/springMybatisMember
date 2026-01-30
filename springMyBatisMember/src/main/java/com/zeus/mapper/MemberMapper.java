@@ -2,9 +2,12 @@ package com.zeus.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.zeus.domain.Member;
 import com.zeus.domain.MemberAuth;
 
+@Mapper
 public interface MemberMapper {
 	
 	//가입(회원 및 회원권한설정)
