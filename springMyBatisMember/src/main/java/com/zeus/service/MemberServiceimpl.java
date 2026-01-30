@@ -59,14 +59,23 @@ public class MemberServiceimpl implements MemberService {
 	            mapper.createAuth(memberAuth);
 	         }
 	      }
-	      return 0;
+	      return count;
 	   }
 
 	@Override
 	@Transactional
-	public int delete(Member memeber) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(Member member) throws Exception {
+		int count = mapper.delete(member);
+		if(count > 0) {
+			mapper.deleteAuth(member);
+		}
+		return count;
+	}
+
+	@Override
+	public List<Member> search(Member member) throws Exception {
+		List<Member> memberList = mapper.search(member);
+		return memberList;
 	}
 
 }
