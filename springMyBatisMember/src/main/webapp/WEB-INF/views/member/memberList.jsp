@@ -171,21 +171,30 @@
     
     <div class="container">
     <div class="header-box">
-        <h1>BOARD <span>LIST</span></h1>
+        <h1>MEMBER <span>LIST</span></h1>
         <a href="/member/memberList" class="btn-write">회원리스트</a>
-         <a href="/member/insertForm" class="btn-write">게시판입력</a>
+        <a href="/member/insertForm" class="btn-write">회원가입</a>
     </div>
-
     
+    <div class="search-container">
+        <form action="/member/search" method="get" class="search-form">
+            <select name="searchType" class="search-select">
+                <option value="id">ID</option>
+                <option value="name">NAME</option>
+            </select>
+            <input type="text" name="keyword" class="search-input" placeholder="Search mission...">
+            <button type="submit" class="btn-search">SEARCH</button>
+        </form>
+    </div>
 
     <table class="t1-table">
         <thead>
             <tr>
-                <th width="10%">No</th>
+                <th width="10%">NO</th>
                 <th width="20%">ID</th>
                 <th width="20%">PW</th>
                 <th width="20%">NAME</th>
-                
+              
                 <th width="30%">REGDATE</th>
             </tr>
         </thead>
@@ -200,7 +209,7 @@
                             </td>
                             <td>${member.pw}</td>
                             <td>${member.name}</td>
-                            
+                          
                             <td><fmt:formatDate value="${member.regDate}" pattern="yyyy.MM.dd" /></td>
                         </tr>
                     </c:forEach>
@@ -220,16 +229,4 @@
 </div>
 
 </body>
-
-<div class="search-container">
-        <form action="/member/search" method="get" class="search-form">
-            <select name="searchType" class="search-select">
-                <option value="title">ID</option>
-                <option value="writer">NAME</option>
-                
-            </select>
-            <input type="text" name="keyword" class="search-input" placeholder="Search mission...">
-            <button type="submit" class="btn-search">SEARCH</button>
-        </form>
-    </div>
 </html>

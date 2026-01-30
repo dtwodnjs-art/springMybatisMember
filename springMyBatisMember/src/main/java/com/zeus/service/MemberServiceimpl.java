@@ -12,9 +12,10 @@ import com.zeus.mapper.MemberMapper;
 
 @Service
 public class MemberServiceimpl implements MemberService {
+	
 	@Autowired
-	private MemberMapper mapper;
-
+	private MemberMapper mapper; 
+	
 	@Override
 	@Transactional
 	public int register(Member member) throws Exception {
@@ -23,58 +24,54 @@ public class MemberServiceimpl implements MemberService {
 			MemberAuth memberAuth = new MemberAuth();
 			memberAuth.setNo(member.getNo());
 			memberAuth.setAuth("ROLE_USER");
-			mapper.createAuth(memberAuth);
+			mapper.createAuth(memberAuth); 
 		}
-					
 		return count;
 	}
 
 	@Override
-	@Transactional
 	public List<Member> list() throws Exception {
 		return mapper.list();
 	}
 
 	@Override
-	
-	public Member read(Member memebr) throws Exception {
-		
-		return mapper.read(memebr);
+	public Member read(Member member) throws Exception {
+		return mapper.read(member);
 	}
 
 	@Override
-	   @Transactional
-	   public int update(Member member) throws Exception {
-	      int count = mapper.update(member);
-	      if(count > 0) {
-	         mapper.deleteAuth(member);
-	         List<MemberAuth> authList = member.getAuthList();
-	         for(int i = 0; i < authList.size() ; i++) {
-	            MemberAuth memberAuth = authList.get(i);
-	            String auth = memberAuth.getAuth();
-	            if(auth == null || auth.trim().length() == 0) {
-	               continue;
-	            }
-	            memberAuth.setNo(member.getNo());
-	            mapper.createAuth(memberAuth);
-	         }
-	      }
-	      return count;
-	   }
+	@Transactional
+	public int update(Member member) throws Exception {
+		int count = mapper.update(member);
+		if(count > 0) {
+			mapper.deleteAuth(member); 
+			List<MemberAuth> authList = member.getAuthList();
+			for(int i=0; i < authList.size() ; i++ ) {
+				MemberAuth memberAuth = authList.get(i); 
+				String auth = memberAuth.getAuth();
+				if(auth == null || auth.trim().length() == 0) {
+					continue; 
+				}
+				memberAuth.setNo(member.getNo());
+				mapper.createAuth(memberAuth);
+			}
+		}
+		return count;
+	}
 
 	@Override
 	@Transactional
 	public int delete(Member member) throws Exception {
 		int count = mapper.delete(member);
 		if(count > 0) {
-			mapper.deleteAuth(member);
+			mapper.deleteAuth(member); 
 		}
 		return count;
 	}
 
 	@Override
 	public List<Member> search(Member member) throws Exception {
-		List<Member> memberList = mapper.search(member);
+		List<Member> memberList = mapper.search(member); 
 		return memberList;
 	}
 

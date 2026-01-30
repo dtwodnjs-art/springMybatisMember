@@ -172,19 +172,19 @@ textarea {
 					value="${member.pw}" required>
 			</div>
 			<div class="form-group">
-					<form:select path="authList[0].auth" disabled="true">
+					<form:select path="authList[0].auth" >
 						<form:option value="" label="=== 선택해 주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select>
-					<form:select path="authList[1].auth" disabled="true">
+					<form:select path="authList[1].auth" >
 						<form:option value="" label="=== 선택해 주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />
 						<form:option value="ROLE_ADMIN" label="관리자" />
 					</form:select>
-					<form:select path="authList[2].auth" disabled="true">
+					<form:select path="authList[2].auth" >
 						<form:option value="" label="=== 선택해 주세요 ===" />
 						<form:option value="ROLE_USER" label="사용자" />
 						<form:option value="ROLE_MEMBER" label="회원" />

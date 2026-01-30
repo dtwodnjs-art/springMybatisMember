@@ -2,11 +2,9 @@ package com.zeus.domain;
 
 import java.util.Date;
 import java.util.List;
-
 import lombok.Data;
 
 @Data
-
 public class Member {
 	private int no; 
 	private String id; 
@@ -18,7 +16,4 @@ public class Member {
 	private String keyword;
 	 
 	private List<MemberAuth> authList; 
-	
-	
-
 }
